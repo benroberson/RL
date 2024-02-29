@@ -43,55 +43,63 @@ class SimpleCorridor(gym.Env):
     You can configure the length of the corridor via the env config."""
 
     def __init__(self, config: EnvContext):
-        self.end_pos = config["corridor_length"]
-        self.cur_pos = 0
-        self.action_space = Discrete(2)
-        self.observation_space = Box(0.0, self.end_pos, dtype=np.float32)
+        self.end_pos = np.array([config["corridor_length"],config["corridor_length"]])
+        self.max_pos = config["corridor_length"]
+        self.cur_pos = np.array([0,0])
+        self.action_space = Discrete(4)
+        self.observation_space = Box(np.array([0,0]), np.array([config["corridor_length"],config["corridor_length"]]), dtype=int)
         # Set the seed. This is only used for the final (reach goal) reward.
         self.reset(seed=config.worker_index * config.num_workers)
 
     def reset(self, *, seed=None, options=None):
         random.seed(seed)
-        self.cur_pos = 0
-        return [self.cur_pos], {}
+        self.cur_pos = np.array([0,0])
+        return self.cur_pos, {}
 
     def step(self, action):
-        assert action in [0, 1], action
-        if action == 0 and self.cur_pos > 0:
-            self.cur_pos -= 1
-        elif action == 1:
-            self.cur_pos += 1
-        done = truncated = self.cur_pos >= self.end_pos
-        # Produce a random reward when we reach the goal.
+        assert action in [0, 1, 2, 3], action
+        if action == 0 and self.cur_pos[1] < self.max_pos:
+            self.cur_pos += np.array([0,1])
+        elif action == 1 and self.cur_pos[0] < self.max_pos:
+            self.cur_pos += np.array([1,0])
+        elif action == 2 and self.cur_pos[1] > 0:
+            self.cur_pos += np.array([0,-1])
+        elif action == 3 and self.cur_pos[0] > 0 :
+            self.cur_pos += np.array([-1,0])
+        done = truncated = (self.cur_pos[0] >= self.end_pos[0] and self.cur_pos[1] >= self.end_pos[1])
+        # Produce a reward when we reach the goal.
         return (
-            [self.cur_pos],
-            (random.random() * 1.5 + .5) if done else -0.1,
+            self.cur_pos,
+            5 if done else -0.1,
             done,
             truncated,
             {},
         )
-    def render(self, mode="rgb_array"):
+    def render(self, mode="human"):
             
-        grid = np.zeros([1, self.end_pos+1, 3])
-        #print("====================================")
-        if self.cur_pos<=self.end_pos and self.cur_pos>=0:
-            grid[0][self.cur_pos]=np.array([255,255,255])
-        else:
-            print("out of bounds: ",self.cur_pos)
-        string="["
-        for i in range(self.end_pos+1):
-            if i==self.cur_pos:
-                string+="O"
-            else:
-                string+=" "
-        string+="]"
-        print(string)
-        return grid
+        s="=="
+        for y in range(self.max_pos+1):
+            s+="="
+        print(s)
+        # if self.cur_pos>self.max_pos or self.cur_pos<0:
+        #     print("out of bounds: ",self.cur_pos)
+        for y in range(self.max_pos,-1,-1):
+            string="["
+            for x in range(self.max_pos+1):
+                if x==self.cur_pos[1] and y==self.cur_pos[0]:
+                    string+="O"
+                elif x==self.end_pos[1] and y==self.end_pos[0]:
+                    string+="X"
+                else:
+                    string+=" "
+            string+="]"
+            print(string)
+        return True
 
 
 if __name__ == "__main__":
     as_test=True
-    stop_iters=1
+    stop_iters=5
     stop_timesteps=100000
     stop_reward=0.1
     no_tune=True
@@ -99,7 +107,8 @@ if __name__ == "__main__":
     run="PPO"
     chkpt_root = "checkpoints_custom_env"
     shutil.rmtree(chkpt_root, ignore_errors=True, onerror=None)
-    corridorlength=25
+    corridor_max_pos=4
+    n_step_rollout = 100
 
     ray.init(local_mode=True)
 
@@ -113,7 +122,7 @@ if __name__ == "__main__":
     
     config = \
         PPOConfig() \
-        .environment(select_env, env_config={"corridor_length": corridorlength}, render_env=True) \
+        .environment(select_env, env_config={"corridor_length": corridor_max_pos}, render_env=True) \
         .framework("torch") \
         .rollouts(num_rollout_workers=1) \
         .resources(num_gpus=int(os.environ.get("RLLIB_NUM_GPUS", "0"))) \
@@ -135,61 +144,62 @@ if __name__ == "__main__":
         # run manual training loop and print results after each iteration
         if skip_train:
             stop_iters=1
-        status = "{:2d} reward {:6.2f}/{:6.2f}/{:6.2f} len {:4.2f} saved {}"
+        status = "{:2d} reward {:6.2f}/{:6.2f}/{:6.2f} len {:4.2f}"
         xdata=[]
         ydata=[]
         for n in range(stop_iters):
             result = algo.train()
-            chkpt_file = algo.save(chkpt_root)
-            print("====================================")
+            #chkpt_file = algo.save(chkpt_root)
+            print("====================================*")
             print(status.format(
             n + 1,
             result["episode_reward_min"],
             result["episode_reward_mean"],
             result["episode_reward_max"],
-            result["episode_len_mean"],
-            chkpt_file
+            result["episode_len_mean"]
+            #chkpt_file
             ))
             xdata.append(n+1)
             ydata.append(result["episode_reward_mean"])
             print("====================================")
             print(pretty_print(result))
-            print("====================================")
+            print("====================================*")
+            
+            # apply the trained policy in a rollout
+            env = SimpleCorridor(EnvContext({"corridor_length": corridor_max_pos},worker_index=0,num_workers=0))
+            observation, _ = env.reset()
+            sum_reward = 0
+            env.render()
+
+            for step in range(n_step_rollout):
+                action = algo.compute_single_action(observation)
+                observation, reward, done, _, info = env.step(action)
+                sum_reward += reward
+
+                env.render()
+
+                if done == 1:
+                    # report at the end of each episode
+                    print("cumulative reward", sum_reward)
+                    sum_reward = 0
+                    break
+            print("iteration ^ : ",n)
             # stop training of the target train steps or reward are reached
             if (
                 result["timesteps_total"] >= stop_timesteps
                 or result["episode_reward_mean"] >= stop_reward
             ):
-                pass
-                #break
+                print("steps total: " ,result["timesteps_total"]," reward mean: " , result["episode_reward_mean"])
+                break
+            
         algo.stop()
-
-        # apply the trained policy in a rollout
-        env = SimpleCorridor(EnvContext({"corridor_length": corridorlength},worker_index=0,num_workers=0))
-        #    env = gym.make(select_env)
-        algo.restore(chkpt_file)
-        
-        state, _ = env.reset()
-        sum_reward = 0
-        n_step = 100
-        env.render()
-
-        for step in range(n_step):
-            action = algo.compute_single_action(state)
-            state, reward, done, _, info = env.step(action)
-            sum_reward += reward
-
-            env.render()
-
-            if done == 1:
-                # report at the end of each episode
-                print("cumulative reward", sum_reward)
-                sum_reward = 0
-                #break
-        
         plt.plot(xdata,ydata)
+        plt.title("2D Gridworld - fixed goal")
+        plt.xlabel("Episodes")
+        plt.ylabel("Reward")
         plt.show()
-        pass
+
+        #algo.restore(chkpt_file)
 
 
 
