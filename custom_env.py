@@ -47,7 +47,7 @@ class SimpleCorridor(gym.Env):
         self.max_pos = config["corridor_length"]
         self.cur_pos = np.array([0,0])
         self.action_space = Discrete(4)
-        self.observation_space = Box(np.array([0,0]), np.array([config["corridor_length"],config["corridor_length"]]), dtype=int)
+        self.observation_space = Box(low=np.array([0,0]), high=np.array([self.max_pos,self.max_pos]), dtype=int)
         # Set the seed. This is only used for the final (reach goal) reward.
         self.reset(seed=config.worker_index * config.num_workers)
 
@@ -70,7 +70,7 @@ class SimpleCorridor(gym.Env):
         # Produce a reward when we reach the goal.
         return (
             self.cur_pos,
-            5 if done else -0.1,
+            1 if done else -0.01,
             done,
             truncated,
             {},
@@ -184,13 +184,13 @@ if __name__ == "__main__":
                     sum_reward = 0
                     break
             print("iteration ^ : ",n)
-            # stop training of the target train steps or reward are reached
+            # stop training if the target train steps or reward are reached
             if (
                 result["timesteps_total"] >= stop_timesteps
                 or result["episode_reward_mean"] >= stop_reward
             ):
                 print("steps total: " ,result["timesteps_total"]," reward mean: " , result["episode_reward_mean"])
-                break
+                #break
             
         algo.stop()
         plt.plot(xdata,ydata)
