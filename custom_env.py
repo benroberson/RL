@@ -176,11 +176,11 @@ if __name__ == "__main__":
             result["episode_reward_mean"],
             result["episode_reward_max"],
             result["episode_len_mean"]
-            #chkpt_file
             ))
+            #print(chkpt_file)
             xdata.append(n+1)
             ydata.append(result["episode_reward_mean"])
-            #print(pretty_print(result))
+            print(pretty_print(result))
             
             print("iteration ^ : ",n)
             print("====================================")
