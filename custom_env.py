@@ -91,11 +91,10 @@ class SimpleCorridor(gym.Env):
 
 if __name__ == "__main__":
     as_test=True
-    stop_iters=1
+    stop_iters=5
     stop_timesteps=100000
     stop_reward=0.1
     no_tune=True
-    skip_train=False
     run="PPO"
     chkpt_root = "checkpoints_custom_env"
     shutil.rmtree(chkpt_root, ignore_errors=True, onerror=None)
@@ -133,14 +132,11 @@ if __name__ == "__main__":
         config.lr = 1e-3
         algo = config.build()
         # run manual training loop and print results after each iteration
-        if skip_train:
-            stop_iters=1
-        status = "{:2d} reward {:6.2f}/{:6.2f}/{:6.2f} len {:4.2f} saved {}"
+        status = "{:2d} reward {:6.2f}/{:6.2f}/{:6.2f} len {:4.2f}"
         xdata=[]
         ydata=[]
         for n in range(stop_iters):
             result = algo.train()
-            chkpt_file = algo.save(chkpt_root)
             print("====================================")
             print(status.format(
             n + 1,
@@ -148,13 +144,30 @@ if __name__ == "__main__":
             result["episode_reward_mean"],
             result["episode_reward_max"],
             result["episode_len_mean"],
-            chkpt_file
             ))
             xdata.append(n+1)
             ydata.append(result["episode_reward_mean"])
             print("====================================")
             print(pretty_print(result))
             print("====================================")
+
+            # apply the trained policy in a rollout
+            env = SimpleCorridor(EnvContext({"corridor_length": corridorlength},worker_index=0,num_workers=0))
+            state, _ = env.reset()
+            sum_reward = 0
+            n_step = 100
+            env.render()
+            for step in range(n_step):
+                action = algo.compute_single_action(state)
+                state, reward, done, _, info = env.step(action)
+                sum_reward += reward
+                env.render()
+                if done == 1:
+                    # report at the end of each episode
+                    print("cumulative reward", sum_reward)
+                    sum_reward = 0
+                    break
+            
             # stop training of the target train steps or reward are reached
             if (
                 result["timesteps_total"] >= stop_timesteps
@@ -164,29 +177,6 @@ if __name__ == "__main__":
                 #break
         algo.stop()
 
-        # apply the trained policy in a rollout
-        env = SimpleCorridor(EnvContext({"corridor_length": corridorlength},worker_index=0,num_workers=0))
-        #    env = gym.make(select_env)
-        algo.restore(chkpt_file)
-        
-        state, _ = env.reset()
-        sum_reward = 0
-        n_step = 100
-        env.render()
-
-        for step in range(n_step):
-            action = algo.compute_single_action(state)
-            state, reward, done, _, info = env.step(action)
-            sum_reward += reward
-
-            env.render()
-
-            if done == 1:
-                # report at the end of each episode
-                print("cumulative reward", sum_reward)
-                sum_reward = 0
-                #break
-        
         plt.plot(xdata,ydata)
         plt.show()
         pass
