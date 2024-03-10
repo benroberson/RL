@@ -197,6 +197,7 @@ if __name__ == "__main__":
         plt.title("2D Gridworld - random goal")
         plt.xlabel("Training Iterations")
         plt.ylabel("Episode Reward Mean")
+        plt.savefig("gridworld_random_goal.png")
         plt.show()
 
         #algo.restore(chkpt_file)
