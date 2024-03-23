@@ -2,6 +2,7 @@ import gymnasium as gym
 import gym_idsgame
 import numpy as np
 from stable_baselines3 import PPO
+from time import sleep
 
 class SingleAgentEnvWrapper(gym.Env):
 
@@ -24,31 +25,17 @@ class SingleAgentEnvWrapper(gym.Env):
         self.idsgame_env.render()
 
 
-from stable_baselines3.common.callbacks import BaseCallback
-
-class EpisodeRewardCallback(BaseCallback):
-    def __init__(self, verbose=0):
-        super(EpisodeRewardCallback, self).__init__(verbose)
-        self.episode_rewards = []
-
-    def _on_step(self) -> bool:
-        # This method will be called by the model after each step
-        return True
-
-    def _on_rollout_end(self) -> None:
-        # This method will be called by the model after each episode
-        pass
-        episode_reward = np.sum(self.model.episode_reward)
-        self.episode_rewards.append(episode_reward)
-        print(f"Episode Reward: {episode_reward}")
-
 if __name__ == '__main__':
-    idsgame_env = gym.make("idsgame-minimal_defense-v19")
+    idsgame_env = gym.make("idsgame-minimal_defense-v21")
     env = SingleAgentEnvWrapper(idsgame_env=idsgame_env, defender_action=0)
     model = PPO("MlpPolicy", env, verbose=1, tensorboard_log="C:/Users/8nr/dev/RL-experiments/cyber-experiments/log_tensorboard")
-    model.learn(total_timesteps=600)#, callback=EpisodeRewardCallback())
-    obs, _ = env.reset()
+    model.learn(total_timesteps=100000)
     while True:
-        action, _states = model.predict(obs)
-        obs, rewards, dones, _, info = env.step(action)
-        env.render("human")
+        obs, _ = env.reset()
+        done = False
+        while not done:
+            action, _states = model.predict(obs)
+            obs, reward, done, _, info = env.step(action)
+            env.render("human")
+        sleep(5)
+        
