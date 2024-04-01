@@ -26,11 +26,11 @@ class SingleAgentEnvWrapper(gym.Env):
 
 
 if __name__ == '__main__':
-    idsgame_env = gym.make("idsgame-minimal_defense-v21")
+    idsgame_env = gym.make("idsgame-maximal_attack-v5")
     env = SingleAgentEnvWrapper(idsgame_env=idsgame_env, defender_action=0)
     model = PPO("MlpPolicy", env, verbose=1, tensorboard_log="C:/Users/8nr/dev/RL-experiments/cyber-experiments/log_tensorboard")
-    model.learn(total_timesteps=100000)
-    while True:
+    model.learn(total_timesteps=7)
+    for i in range(5):
         obs, _ = env.reset()
         done = False
         while not done:
@@ -38,4 +38,4 @@ if __name__ == '__main__':
             obs, reward, done, _, info = env.step(action)
             env.render("human")
         sleep(5)
-        
+    pass   

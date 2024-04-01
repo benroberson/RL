@@ -1,0 +1,6 @@
+1. random defense 10 2l
+2. random defense 10 1l
+6. random defense 3 1l
+7. random defense 3 2l
+8. random defense 10 3l
+9. random defense 3 3l

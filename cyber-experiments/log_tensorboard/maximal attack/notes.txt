@@ -1,0 +1,12 @@
+1: v19 default properties
+2-3: v21 default properties
+4: v21 with 10 nodes
+
+try maximal attack next
+1. 10, 1L
+2. 10, 2L
+3. 3, 1l
+4. 10, 3l
+5. 30, 1l
+6. 30, 2l
+

@@ -1,0 +1,4 @@
+find out how to record episode reward mean
+skip this. use tensorboard for now
+
+Try increasing the size of the network to see when or if the agent begins to fail to learn.
