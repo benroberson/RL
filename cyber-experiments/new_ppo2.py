@@ -26,7 +26,7 @@ class SingleAgentEnvWrapper(gym.Env):
 
 
 if __name__ == '__main__':
-    idsgame_env = gym.make("idsgame-maximal_attack-v5")
+    idsgame_env = gym.make("idsgame-maximal_attack-v21")
     env = SingleAgentEnvWrapper(idsgame_env=idsgame_env, defender_action=0)
     model = PPO("MlpPolicy", env, verbose=1, tensorboard_log="C:/Users/8nr/dev/RL-experiments/cyber-experiments/log_tensorboard")
     model.learn(total_timesteps=7)

@@ -1,0 +1,465 @@
+{
+    "uuid": "f6e8de45-3d4b-4bd9-a4a6-14044b7e9143",
+    "network": {
+        "set_random_entry_nodes": true,
+        "random_entry_node_preference": "NONE",
+        "num_of_random_entry_nodes": 1,
+        "set_random_high_value_nodes": true,
+        "random_high_value_node_preference": "FURTHEST_AWAY_FROM_ENTRY",
+        "num_of_random_high_value_nodes": 1,
+        "set_random_vulnerabilities": true,
+        "node_vulnerability_lower_bound": 0.01,
+        "node_vulnerability_upper_bound": 1,
+        "nodes": {
+            "70680cfd-3874-4154-b5b8-6815739b6744": {
+                "uuid": "70680cfd-3874-4154-b5b8-6815739b6744",
+                "name": "0",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.11071478828202311,
+                "x_pos": -540,
+                "y_pos": 856
+            },
+            "8c4782ad-1c10-4302-8863-2050a5f8a400": {
+                "uuid": "8c4782ad-1c10-4302-8863-2050a5f8a400",
+                "name": "1",
+                "high_value_node": false,
+                "entry_node": true,
+                "vulnerability": 0.15528939382831894,
+                "x_pos": -197,
+                "y_pos": -327
+            },
+            "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {
+                "uuid": "83c7ea6a-0a60-4b4f-8899-ed99ac971ece",
+                "name": "10",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.33078789239886736,
+                "x_pos": -732,
+                "y_pos": -307
+            },
+            "2f0ecef8-b066-4d4e-8739-d72a6584558d": {
+                "uuid": "2f0ecef8-b066-4d4e-8739-d72a6584558d",
+                "name": "11",
+                "high_value_node": true,
+                "entry_node": false,
+                "vulnerability": 0.590110424477291,
+                "x_pos": 286,
+                "y_pos": 242
+            },
+            "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {
+                "uuid": "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c",
+                "name": "2",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.45287555958249126,
+                "x_pos": 869,
+                "y_pos": -132
+            },
+            "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {
+                "uuid": "9087bba0-d1c0-48b9-9cea-bd2da5572e04",
+                "name": "3",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.3273028654488721,
+                "x_pos": 444,
+                "y_pos": -255
+            },
+            "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {
+                "uuid": "f4e399e4-f4c9-4f1e-b96b-758d47cb592d",
+                "name": "4",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.20523289816854756,
+                "x_pos": -199,
+                "y_pos": 132
+            },
+            "2be00736-2682-49eb-bda0-3033444b906b": {
+                "uuid": "2be00736-2682-49eb-bda0-3033444b906b",
+                "name": "5",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.28980599264116813,
+                "x_pos": -742,
+                "y_pos": 176
+            },
+            "28eefc72-81cc-4ea7-9096-3cc2610a1309": {
+                "uuid": "28eefc72-81cc-4ea7-9096-3cc2610a1309",
+                "name": "6",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.6939631102253245,
+                "x_pos": 314,
+                "y_pos": -656
+            },
+            "b6451dc2-82b8-425d-a975-5a621de54937": {
+                "uuid": "b6451dc2-82b8-425d-a975-5a621de54937",
+                "name": "7",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.18398877043424808,
+                "x_pos": -121,
+                "y_pos": -864
+            },
+            "ca55acb5-3888-4ae9-b547-e6921b512db3": {
+                "uuid": "ca55acb5-3888-4ae9-b547-e6921b512db3",
+                "name": "8",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.9772160773797756,
+                "x_pos": 577,
+                "y_pos": 440
+            },
+            "5907cfbb-e4cc-49e3-afc8-527a17e16686": {
+                "uuid": "5907cfbb-e4cc-49e3-afc8-527a17e16686",
+                "name": "9",
+                "high_value_node": false,
+                "entry_node": false,
+                "vulnerability": 0.05190979691192715,
+                "x_pos": 40,
+                "y_pos": 694
+            }
+        },
+        "edges": {
+            "70680cfd-3874-4154-b5b8-6815739b6744": {
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {}
+            },
+            "8c4782ad-1c10-4302-8863-2050a5f8a400": {
+                "70680cfd-3874-4154-b5b8-6815739b6744": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {}
+            },
+            "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {
+                "70680cfd-3874-4154-b5b8-6815739b6744": {},
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {}
+            },
+            "2f0ecef8-b066-4d4e-8739-d72a6584558d": {
+                "70680cfd-3874-4154-b5b8-6815739b6744": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {}
+            },
+            "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {}
+            },
+            "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {
+                "70680cfd-3874-4154-b5b8-6815739b6744": {},
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {}
+            },
+            "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {}
+            },
+            "2be00736-2682-49eb-bda0-3033444b906b": {
+                "70680cfd-3874-4154-b5b8-6815739b6744": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {}
+            },
+            "28eefc72-81cc-4ea7-9096-3cc2610a1309": {
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {}
+            },
+            "b6451dc2-82b8-425d-a975-5a621de54937": {
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {}
+            },
+            "ca55acb5-3888-4ae9-b547-e6921b512db3": {
+                "70680cfd-3874-4154-b5b8-6815739b6744": {},
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "b6451dc2-82b8-425d-a975-5a621de54937": {},
+                "5907cfbb-e4cc-49e3-afc8-527a17e16686": {}
+            },
+            "5907cfbb-e4cc-49e3-afc8-527a17e16686": {
+                "70680cfd-3874-4154-b5b8-6815739b6744": {},
+                "8c4782ad-1c10-4302-8863-2050a5f8a400": {},
+                "83c7ea6a-0a60-4b4f-8899-ed99ac971ece": {},
+                "2f0ecef8-b066-4d4e-8739-d72a6584558d": {},
+                "cb0a5b0b-3275-46cb-a5b9-3ecf66255d3c": {},
+                "9087bba0-d1c0-48b9-9cea-bd2da5572e04": {},
+                "f4e399e4-f4c9-4f1e-b96b-758d47cb592d": {},
+                "2be00736-2682-49eb-bda0-3033444b906b": {},
+                "28eefc72-81cc-4ea7-9096-3cc2610a1309": {},
+                "ca55acb5-3888-4ae9-b547-e6921b512db3": {}
+            }
+        },
+        "_doc_metadata": {
+            "uuid": "c456f851-4e39-4cb1-8798-37b716325c4d",
+            "name": "c",
+            "locked": false,
+            "created_at": "2024-04-24T23:30:34.028390",
+            "updated_at": "2024-04-24T23:32:31.859999"
+        }
+    },
+    "game_mode": {
+        "red": {
+            "agent_attack": {
+                "ignores_defences": false,
+                "always_succeeds": false,
+                "skill": {
+                    "use": true,
+                    "value": 0.5
+                },
+                "attack_from": {
+                    "only_main_red_node": false,
+                    "any_red_node": true
+                }
+            },
+            "action_set": {
+                "spread": {
+                    "use": false,
+                    "likelihood": 1,
+                    "chance": 0.1
+                },
+                "random_infect": {
+                    "use": false,
+                    "likelihood": 1,
+                    "chance": 0.1
+                },
+                "move": {
+                    "use": false,
+                    "likelihood": 1
+                },
+                "basic_attack": {
+                    "use": true,
+                    "likelihood": 2
+                },
+                "do_nothing": {
+                    "use": true,
+                    "likelihood": 1
+                },
+                "zero_day": {
+                    "use": true,
+                    "start_amount": 1,
+                    "days_required": 4
+                }
+            },
+            "natural_spreading": {
+                "capable": true,
+                "chance": {
+                    "to_connected_node": 0.05,
+                    "to_unconnected_node": 0
+                }
+            },
+            "target_mechanism": {
+                "random": true,
+                "prioritise_connected_nodes": false,
+                "prioritise_unconnected_nodes": false,
+                "prioritise_vulnerable_nodes": false,
+                "prioritise_resilient_nodes": false,
+                "target_specific_node": {
+                    "use": false,
+                    "target": null,
+                    "always_choose_shortest_distance": true
+                }
+            }
+        },
+        "blue": {
+            "action_set": {
+                "reduce_vulnerability": true,
+                "restore_node": false,
+                "scan": true,
+                "isolate_node": false,
+                "reconnect_node": false,
+                "do_nothing": false,
+                "make_node_safe": {
+                    "use": true,
+                    "increases_vulnerability": false,
+                    "gives_random_vulnerability": false,
+                    "vulnerability_change": 0.4
+                },
+                "deceptive_nodes": {
+                    "use": false,
+                    "max_number": 2,
+                    "new_node_on_relocate": true
+                }
+            },
+            "intrusion_discovery_chance": {
+                "immediate": {
+                    "standard_node": 0.5,
+                    "deceptive_node": 1
+                },
+                "on_scan": {
+                    "standard_node": 1,
+                    "deceptive_node": 1
+                }
+            },
+            "attack_discovery": {
+                "failed_attacks": {
+                    "use": true,
+                    "chance": {
+                        "standard_node": 1,
+                        "deceptive_node": 1
+                    }
+                },
+                "succeeded_attacks_known_compromise": {
+                    "use": true,
+                    "chance": {
+                        "standard_node": 1,
+                        "deceptive_node": 1
+                    }
+                },
+                "succeeded_attacks_unknown_compromise": {
+                    "use": true,
+                    "chance": {
+                        "standard_node": 1,
+                        "deceptive_node": 1
+                    }
+                }
+            }
+        },
+        "game_rules": {
+            "grace_period_length": 0,
+            "max_steps": 1000,
+            "blue_loss_condition": {
+                "all_nodes_lost": false,
+                "high_value_node_lost": true,
+                "target_node_lost": false,
+                "n_percent_nodes_lost": {
+                    "use": false,
+                    "value": 0.8
+                }
+            },
+            "network_compatibility": {
+                "node_count": {
+                    "restrict": false,
+                    "min": 2,
+                    "max": 20
+                },
+                "entry_node_count": {
+                    "restrict": false,
+                    "min": 2,
+                    "max": 6
+                },
+                "high_value_node_count": {
+                    "restrict": false,
+                    "min": 2,
+                    "max": 5
+                }
+            }
+        },
+        "observation_space": {
+            "compromised_status": true,
+            "vulnerabilities": true,
+            "node_connections": true,
+            "average_vulnerability": true,
+            "graph_connectivity": true,
+            "attacking_nodes": true,
+            "attacked_nodes": true,
+            "special_nodes": true,
+            "red_agent_skill": true
+        },
+        "on_reset": {
+            "randomise_vulnerabilities": false,
+            "choose_new_high_value_nodes": true,
+            "choose_new_entry_nodes": false
+        },
+        "rewards": {
+            "for_loss": -100,
+            "for_reaching_max_steps": 100,
+            "end_rewards_are_multiplied_by_end_state": true,
+            "reduce_negative_rewards_for_closer_fails": true,
+            "function": "standard_rewards"
+        },
+        "miscellaneous": {
+            "random_seed": null,
+            "output_timestep_data_to_json": false
+        },
+        "_doc_metadata": {
+            "uuid": "900a704f-6271-4994-ade7-40b74d3199b1",
+            "name": "Default Game Mode",
+            "description": "The Yawning-Titan default game mode.",
+            "author": "dstl/YAWNING-TITAN",
+            "locked": true,
+            "created_at": "2023-01-30T23:07:02.147507",
+            "updated_at": null
+        }
+    },
+    "red_agent_class": "RedInterface",
+    "blue_agent_class": "BlueInterface",
+    "print_metrics": false,
+    "show_metrics_every": 1,
+    "collect_additional_per_ts_data": true,
+    "eval_freq": 10000,
+    "total_timesteps": 100000,
+    "training_runs": 1,
+    "n_eval_episodes": 1,
+    "deterministic": false,
+    "warn": true,
+    "render": false,
+    "verbose": 1.0,
+    "auto": false
+}
